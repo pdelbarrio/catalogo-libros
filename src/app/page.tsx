@@ -3,25 +3,28 @@
 
 import { useEffect, useMemo, useState } from "react";
 import data from "../books.json";
-
-export interface Book {
-  title: string;
-  pages: number;
-  genre: string;
-  cover: string;
-  synopsis: string;
-  year: number;
-  ISBN: string;
-  author: {
-    name: string;
-    otherBooks: string[];
-  };
-}
+import { Book } from "@/models/models";
 
 const books: Book[] = data.library.map((data) => data.book);
 const genres: Book["genre"][] = Array.from(
   new Set(books.map((book) => book.genre))
 );
+
+function onReadListChange(callback: (readList: Book["ISBN"][]) => void) {
+  function getReadlist() {
+    const readList = JSON.parse(
+      localStorage.getItem("readList") ?? "[]"
+    ) as Book["ISBN"][];
+
+    callback(readList);
+  }
+
+  window.addEventListener("storage", getReadlist);
+
+  getReadlist();
+
+  return () => window.removeEventListener("storage", getReadlist);
+}
 
 export default function Home() {
   const [genre, setGenre] = useState<Book["genre"]>("");
@@ -46,9 +49,9 @@ export default function Home() {
   }
 
   useEffect(() => {
-    setReadList(
-      JSON.parse(localStorage.getItem("readList") ?? "[]") as Book["ISBN"][]
-    );
+    const unsubscribe = onReadListChange(setReadList);
+
+    return () => unsubscribe();
   }, []);
 
   return (
