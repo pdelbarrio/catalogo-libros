@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import data from "../books.json";
 
 export interface Book {
@@ -37,12 +37,19 @@ export default function Home() {
   }, [genre]);
 
   function handleBookClick(book: Book["ISBN"]) {
-    setReadList((readList) =>
-      readList.includes(book)
-        ? readList.filter((readBook) => readBook !== book)
-        : [...readList, book]
-    );
+    const draft = readList.includes(book)
+      ? readList.filter((readBook) => readBook !== book)
+      : [...readList, book];
+
+    setReadList(draft);
+    localStorage.setItem("readList", JSON.stringify(draft));
   }
+
+  useEffect(() => {
+    setReadList(
+      JSON.parse(localStorage.getItem("readList") ?? "[]") as Book["ISBN"][]
+    );
+  }, []);
 
   return (
     <article className="grid gap-4">

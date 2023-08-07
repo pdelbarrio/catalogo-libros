@@ -1,34 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Lista de Libros App
 
-## Getting Started
+Esta es una pequeña aplicación web de lista de libros desarrollada utilizando React con el framework Next.js. El propósito principal de esta aplicación es practicar el manejo de interacciones con el usuario, la gestión del estado, el filtrado de datos y la estructuración del código.
 
-First, run the development server:
+## Funcionalidad
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+La aplicación cuenta con las siguientes características:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Visualización de Libros Disponibles
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+La página principal muestra una lista de libros disponibles que los usuarios pueden revisar. Cada libro está representado con su título, autor y género.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Creación de Lista de Lectura
 
-## Learn More
+Los usuarios tienen la capacidad de crear una lista de lectura personalizada a partir de los libros disponibles. La interfaz de usuario distingue claramente entre los libros que están en la lista de lectura y los que no lo están. Además, es posible mover un libro de la lista de lectura a la lista de disponibles y viceversa.
 
-To learn more about Next.js, take a look at the following resources:
+### Filtrado de Libros por Género
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Se ofrece a los usuarios la opción de filtrar la lista de libros disponibles por género. Junto con el filtro, se muestra un contador que indica el número de libros disponibles, el número de libros en la lista de lectura y el número de libros disponibles en el género seleccionado.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Sincronización de Estado
 
-## Deploy on Vercel
+La aplicación mantiene un estado global que refleja el número de libros en la lista de lectura y el número de libros aún disponibles. Cuando un libro se traslada de la lista de disponibles a la lista de lectura, los recuentos se actualizan automáticamente.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Persistencia de Datos
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Los datos de la lista de lectura se almacenan en el almacenamiento local del navegador, lo que permite que la lista de lectura se mantenga incluso después de recargar la página. Esta característica garantiza una experiencia de usuario fluida.
+
+### Sincronización entre Pestañas
+
+Si un usuario abre la aplicación en dos pestañas diferentes del navegador, los cambios realizados en una pestaña se reflejarán instantáneamente en la otra. Esto se logra sin la necesidad de un backend, lo que facilita la sincronización de datos entre distintas instancias de la aplicación.
+
+## Configuración y Ejecución
+
+1. Clona este repositorio en tu máquina local.
+2. Abre una terminal y navega hasta el directorio del repositorio.
+3. Ejecuta `npm install` para instalar las dependencias.
+4. Luego, ejecuta `npm run dev` para iniciar el servidor de desarrollo.
+5. Abre tu navegador y ve a `http://localhost:3000` para acceder a la aplicación.
+
+
+
+---
+
+Esta aplicación fue creada como parte de un ejercicio de práctica para aprender y mejorar las habilidades de desarrollo utilizando React y Next.js. 
+
