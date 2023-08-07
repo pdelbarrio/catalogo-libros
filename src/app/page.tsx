@@ -1,6 +1,11 @@
 import type { Book } from "@/models/types";
+import dynamic from "next/dynamic";
+import IndexLoading from "./loading";
 
-import IndexClientPage from "./client";
+const IndexClientPage = dynamic(() => import("./client"), {
+  ssr: false,
+  loading: IndexLoading,
+});
 
 const api = {
   book: {

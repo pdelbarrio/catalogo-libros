@@ -68,8 +68,8 @@ export default function IndexClientPage({
               alt={book.title}
             />
             <p>
-              {readList.includes(book.ISBN) && <span>⭐ </span>}
               {book.title}
+              {readList.includes(book.ISBN) && <span>⭐ </span>}
             </p>
           </li>
         ))}
