@@ -1,4 +1,4 @@
-import { Book } from "@/models/models";
+import { Book } from "@/models/types";
 
 export const api = {
   readList: {
